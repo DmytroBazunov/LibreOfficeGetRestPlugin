@@ -1,4 +1,4 @@
-package com.github.binarywolf.test;
+package com.github.binnarywolf.test;
 
 import static org.junit.Assert.*;
 
