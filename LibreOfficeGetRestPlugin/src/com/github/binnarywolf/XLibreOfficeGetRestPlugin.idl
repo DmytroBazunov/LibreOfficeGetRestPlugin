@@ -1,0 +1,27 @@
+/*
+ * XLibreOfficeGetRestPlugin.idl
+ *
+ * Created on 2014.05.30 - 17:56:08
+ *
+ */
+
+#ifndef _com_github_binnarywolf_XLibreOfficeGetRestPlugin_
+#define _com_github_binnarywolf_XLibreOfficeGetRestPlugin_
+
+#include <com/sun/star/lang/XLocalizable.idl>
+
+#include <com/sun/star/uno/XInterface.idl>
+
+
+module com { module github { module binnarywolf {
+    interface XLibreOfficeGetRestPlugin {
+        /// used to set an add-in locale for formatting reasons for example
+        [optional] interface ::com::sun::star::lang::XLocalizable;
+
+        string get([in] string URL);
+
+        string parseJSON([in] string JSON, [in] string pattern);
+    };
+}; }; };
+
+#endif

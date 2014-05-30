@@ -1,0 +1,17 @@
+/*
+ * LibreOfficeGetRestPlugin.idl
+ *
+ * Created on 2014.05.30 - 17:56:08
+ *
+ */
+
+#ifndef _com_github_binnarywolf_LibreOfficeGetRestPlugin_
+#define _com_github_binnarywolf_LibreOfficeGetRestPlugin_
+
+#include "XLibreOfficeGetRestPlugin.idl"
+
+module com { module github { module binnarywolf {
+    service LibreOfficeGetRestPlugin : XLibreOfficeGetRestPlugin;
+}; }; };
+
+#endif

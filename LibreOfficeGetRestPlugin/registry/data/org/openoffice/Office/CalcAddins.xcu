@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<oor:component-data xmlns:oor="http://openoffice.org/2001/registry" xmlns:xs="http://www.w3.org/2001/XMLSchema" oor:name="CalcAddIns" oor:package="org.openoffice.Office">
+    <node oor:name="AddInInfo">
+        <node oor:name="com.github.binnarywolf.LibreOfficeGetRestPlugin" oor:op="replace">
+            <node oor:name="AddInFunctions">
+                <node oor:name="get" oor:op="replace">
+                    <prop oor:name="DisplayName">
+                        <value xml:lang="en">get</value>
+                    </prop>
+                    <prop oor:name="Description">
+                        <value xml:lang="en">getJSON</value>
+                    </prop>
+                    <prop oor:name="Category">
+                        <value>Add-In</value>
+                    </prop>
+                    <prop oor:name="CompatibilityName">
+                        <value xml:lang="en">get</value>
+                    </prop>
+                    <node oor:name="Parameters">
+                        <node oor:name="URL" oor:op="replace">
+                            <prop oor:name="DisplayName">
+                                <value xml:lang="en">URL</value>
+                            </prop>
+                            <prop oor:name="Description">
+                                <value xml:lang="en">Rest request</value>
+                            </prop>
+                        </node>
+                    </node>
+                </node>
+                <node oor:name="parseJSON" oor:op="replace">
+                    <prop oor:name="DisplayName">
+                        <value xml:lang="en">parseJSON</value>
+                    </prop>
+                    <prop oor:name="Description">
+                        <value xml:lang="en">Function parse json string with patter </value>
+                    </prop>
+                    <prop oor:name="Category">
+                        <value>Add-In</value>
+                    </prop>
+                    <prop oor:name="CompatibilityName">
+                        <value xml:lang="en">parseJSON</value>
+                    </prop>
+                    <node oor:name="Parameters">
+                        <node oor:name="JSON" oor:op="replace">
+                            <prop oor:name="DisplayName">
+                                <value xml:lang="en">JSON</value>
+                            </prop>
+                            <prop oor:name="Description">
+                                <value xml:lang="en">JSON to parse</value>
+                            </prop>
+                        </node>
+                        <node oor:name="pattern" oor:op="replace">
+                            <prop oor:name="DisplayName">
+                                <value xml:lang="en">pattern</value>
+                            </prop>
+                            <prop oor:name="Description">
+                                <value xml:lang="en">Pattern for JSOn parser</value>
+                            </prop>
+                        </node>
+                    </node>
+                </node>
+            </node>
+        </node>
+    </node>
+</oor:component-data>
