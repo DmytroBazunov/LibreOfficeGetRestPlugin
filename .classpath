@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="LibreOfficeGetRestPlugin/src"/>
+	<classpathentry kind="lib" path="LibreOfficeGetRestPlugin/dist/lib/java_uno.jar"/>
+	<classpathentry kind="lib" path="LibreOfficeGetRestPlugin/dist/lib/juh.jar"/>
+	<classpathentry kind="lib" path="LibreOfficeGetRestPlugin/dist/lib/jurt.jar"/>
+	<classpathentry kind="lib" path="LibreOfficeGetRestPlugin/dist/lib/LibreOfficeGetRestPlugin_IDL_types.jar"/>
+	<classpathentry kind="lib" path="LibreOfficeGetRestPlugin/dist/lib/officebean.jar"/>
+	<classpathentry kind="lib" path="LibreOfficeGetRestPlugin/dist/lib/ridl.jar"/>
+	<classpathentry kind="lib" path="LibreOfficeGetRestPlugin/dist/lib/unoil.jar"/>
+	<classpathentry kind="lib" path="LibreOfficeGetRestPlugin/dist/lib/unoloader.jar"/>
+	<classpathentry kind="lib" path="LibreOfficeGetRestPlugin/dist/LibreOfficeGetRestPlugin_IDL_types.jar"/>
+	<classpathentry kind="lib" path="LibreOfficeGetRestPlugin/dist/LibreOfficeGetRestPlugin.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="LibreOfficeGetRestPlugin/build/classes"/>
+</classpath>
