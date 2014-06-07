@@ -26,10 +26,14 @@ public class JSONParser {
 			for (String command : commands) {
 				actualObj = executeCommand(actualObj, command);
 			}
-			if (actualObj.isTextual()) {
-				result = actualObj.asText();
+			if (actualObj != null) {
+				if (actualObj.isTextual()) {
+					result = actualObj.asText();
+				} else {
+					result = actualObj.toString();
+				}
 			} else {
-				result=actualObj.toString();
+				result = "No such node found.";
 			}
 		} catch (JsonParseException e) {
 			result = "JSON parser exception";
@@ -43,15 +47,17 @@ public class JSONParser {
 
 	private static JsonNode executeCommand(JsonNode currentNode, String command) {
 		JsonNode newNode = null;
-		System.out.println("Node before " + currentNode);
-		String argument = command.substring(4, command.length() - 1);
-		try {
-			int index = Integer.parseInt(argument);
-			newNode = currentNode.get(index);
-		} catch (NumberFormatException e) {
-			newNode = currentNode.get(argument);
+		if (currentNode != null) {
+			System.out.println("Node before " + currentNode);
+			String argument = command.substring(4, command.length() - 1);
+			if (command.startsWith("get(")) {
+				int index = Integer.parseInt(argument);
+				newNode = currentNode.get(index);
+			} else {
+				newNode = currentNode.get(command);
+			}
+			System.out.println("Node after " + newNode);
 		}
-		System.out.println("Node after " + newNode);
 		return newNode;
 	}
 }
