@@ -6,6 +6,8 @@
 
 package com.github.binnarywolf;
 
+import com.github.binnarywolf.json.JSONParser;
+import com.github.binnarywolf.rest.RestClient;
 import com.sun.star.lang.Locale;
 import com.sun.star.lang.XSingleComponentFactory;
 import com.sun.star.lib.uno.helper.Factory;
@@ -21,7 +23,7 @@ import org.omg.CORBA.Request;
  * @author binnarywolf
  */
 public class LibreOfficeGetRestPluginImpl extends WeakBase
-        implements  com.github.binnarywolf.XLibreOfficeGetRestPlugin,
+        implements  XLibreOfficeGetRestPlugin,
         com.sun.star.lang.XServiceInfo,
         com.sun.star.lang.XLocalizable{
 
@@ -79,11 +81,12 @@ public class LibreOfficeGetRestPluginImpl extends WeakBase
     }
 
     public String get(String URL) {
-     return "TODO GET REST";
+     return new RestClient().get(URL);
     }
 
-    public String parseJSON(String string, String string1) {
-       return "TODO PARSE JSON";
+    public String parseJSON(String json, String pattern) {
+        String result=JSONParser.parseJSON(json,pattern);
+       return result;
     }
  
 

@@ -34,13 +34,13 @@ public class RestClient {
 			in.close();
 			response=serverResponse.toString();
 		} catch (MalformedURLException e) {
-			response = "Введен некоректный URL";
+			response = "Wrong Url format";
 		} catch (ProtocolException e) {
 			response = "Error in the underlying protocol";
-			e.printStackTrace();
+		//	e.printStackTrace();
 		} catch (IOException e) {
 			response = "Failed to set up connection";
-			e.printStackTrace();
+		//	e.printStackTrace();
 		}
 		response=response.trim();
 		return response;
