@@ -17,12 +17,14 @@
         <!-- set variablers from SDK and Office -->
         <echo message="setting up UNO environment ..."/>
         <property name="office.unopkg" value="${office.program.dir}${file.separator}unopkg"/>
-        <property name="office.soffice" value="${office.program.dir}${file.separator}soffice"/>
-        
-        <property name="sdk.idl.dir" location="/opt/libreoffice4.2/sdk${file.separator}idl"/> 
-        <property name="sdk.idlc" value="/opt/libreoffice4.2/sdk/bin${file.separator}idlc"/>
-        <property name="sdk.regmerge" value="/opt/libreoffice4.2/sdk/ure/bin${file.separator}regmerge"/>
-        <property name="sdk.javamaker" value="/opt/libreoffice4.2/sdk/bin${file.separator}javamaker"/>
+        <property name="office.soffice" value="${office.program.dir}${file.separator}soffice"/>        
+        <property name="sdk.dir" value="/opt/libreoffice4.3/sdk/"/>
+        <property name="sdk.dir.bin" value="${sdk.dir}${file.separator}bin"/>
+        <property name="sdk.dir.ure.bin" value="/opt/libreoffice4.3${file.separator}ure${file.separator}bin"/>
+        <property name="sdk.idl.dir" location="${sdk.dir}${file.separator}idl"/> 
+        <property name="sdk.idlc" value="${sdk.dir.bin}${file.separator}idlc"/>
+        <property name="sdk.regmerge" value="${sdk.dir.ure.bin}${file.separator}regmerge"/>
+        <property name="sdk.javamaker" value="${sdk.dir.bin}${file.separator}javamaker"/>
 
         <dirname property="project.dir" file="build.xml"/>       
         <property name="uno.package.name" value="${project.dir}${file.separator}${dist.dir}${file.separator}${project.name}.oxt"/>
@@ -132,7 +134,7 @@
     </target>
     
     <!-- generate Java class files from type library: execution -->
-    <target name="-uno-idl-javamaker" depends="-uno-idl-regmerge,-uno-idl-idlc-condition,-uno-idl-javamaker-condition" if="javamaker.Required" unless="idlc.notRequired"><echo message="generating java class files from rdb..."/><echo message="${idl.classes.dir}"/><echo message="${idl.rdb.fullpath}"/><echo message="${oo.unotypes.rdb}"/><echo message="${oo.offapi.rdb}"/><exec executable="${sdk.javamaker}" dir="${office.program.dir}" failonerror="true"><env key="PATH" path="${office.tool.path}"/><env key="LD_LIBRARY_PATH" path="${office.tool.path}"/><env key="DYLD_LIBRARY_PATH" path="${office.tool.path}"/><arg value="-O"/><arg value="${idl.classes.dir}"/><arg file="${idl.rdb.fullpath}"/><arg value="-X/opt/libreoffice4.2/sdk/ure/share/misc/types.rdb"/><!-- from ConfigurationSettings --><arg value="-X/opt/libreoffice4.2/sdk/ure/share/misc/types.rdb"/><!-- from ConfigurationSettings --></exec></target>
+    <target name="-uno-idl-javamaker" depends="-uno-idl-regmerge,-uno-idl-idlc-condition,-uno-idl-javamaker-condition" if="javamaker.Required" unless="idlc.notRequired"><echo message="generating java class files from rdb..."/><echo message="${idl.classes.dir}"/><echo message="${idl.rdb.fullpath}"/><echo message="${oo.unotypes.rdb}"/><echo message="${oo.offapi.rdb}"/><exec executable="${sdk.javamaker}" dir="${office.program.dir}" failonerror="true"><env key="PATH" path="${office.tool.path}"/><env key="LD_LIBRARY_PATH" path="${office.tool.path}"/><env key="DYLD_LIBRARY_PATH" path="${office.tool.path}"/><arg value="-O"/><arg value="${idl.classes.dir}"/><arg file="${idl.rdb.fullpath}"/><arg value="-X/opt/libreoffice4.3/ure/share/misc/types.rdb"/><!-- from ConfigurationSettings --><arg value="-X/opt/libreoffice4.3/ure/share/misc/types.rdb"/><!-- from ConfigurationSettings --></exec></target>
 
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
