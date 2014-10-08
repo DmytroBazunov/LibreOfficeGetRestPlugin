@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.binnarywolf</groupId>
 	<artifactId>GetRestAPI</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>GetRestAPI</name>
 	<description>API for sending get request to restfull server and parsing json structures</description>
 	<properties>

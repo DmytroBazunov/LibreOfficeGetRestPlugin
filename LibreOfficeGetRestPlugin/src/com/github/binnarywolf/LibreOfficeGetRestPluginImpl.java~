@@ -87,7 +87,7 @@ public class LibreOfficeGetRestPluginImpl extends WeakBase
     public String parseJSON(String json, String pattern) {
 	System.out.println("Parse json start");
         String result=JSONParser.parseJSON(json,pattern);
-       return result;
+       return "no";
     }
  
 
