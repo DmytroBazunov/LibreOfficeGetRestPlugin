@@ -6,34 +6,35 @@
             <node oor:name="AddInFunctions">
                 <node oor:name="get" oor:op="replace">
                     <prop oor:name="DisplayName">
-                        <value xml:lang="en">get</value>
+                        <value xml:lang="en">GET</value>
                     </prop>
                     <prop oor:name="Description">
-                        <value xml:lang="en">getJSON</value>
+                        <value xml:lang="en">Function sends get request to the url passed as a parameter</value>
                     </prop>
                     <prop oor:name="Category">
                         <value>Add-In</value>
                     </prop>
                     <prop oor:name="CompatibilityName">
-                        <value xml:lang="en">get</value>
+                        <value xml:lang="en">GET</value>
                     </prop>
                     <node oor:name="Parameters">
                         <node oor:name="URL" oor:op="replace">
                             <prop oor:name="DisplayName">
-                                <value xml:lang="en">URL</value>
+                                <value xml:lang="en">request URL</value>
                             </prop>
                             <prop oor:name="Description">
-                                <value xml:lang="en">Rest request</value>
+                                <value xml:lang="en">URL which to send a GET request</value>
                             </prop>
                         </node>
                     </node>
                 </node>
                 <node oor:name="parseJSON" oor:op="replace">
                     <prop oor:name="DisplayName">
-                        <value xml:lang="en">parseJSON</value>
+                        <value xml:lang="en">PARSEJSON</value>
                     </prop>
                     <prop oor:name="Description">
-                        <value xml:lang="en">Function parse json string with patter </value>
+                        <value xml:lang="en">The function parses the JSON in accordance with a predetermined pattern.
+                        </value>
                     </prop>
                     <prop oor:name="Category">
                         <value>Add-In</value>
@@ -47,15 +48,15 @@
                                 <value xml:lang="en">JSON</value>
                             </prop>
                             <prop oor:name="Description">
-                                <value xml:lang="en">JSON to parse</value>
+                                <value xml:lang="en">JSON data intended for parsing.</value>
                             </prop>
                         </node>
                         <node oor:name="pattern" oor:op="replace">
                             <prop oor:name="DisplayName">
-                                <value xml:lang="en">pattern</value>
+                                <value xml:lang="en">Pattern</value>
                             </prop>
                             <prop oor:name="Description">
-                                <value xml:lang="en">Pattern for JSOn parser</value>
+                                <value xml:lang="en">Parsing pattern which is used to obtain the substructure in JSON format.</value>
                             </prop>
                         </node>
                     </node>
