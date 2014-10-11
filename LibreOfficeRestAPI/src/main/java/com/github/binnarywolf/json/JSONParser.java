@@ -11,68 +11,113 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.ObjectMapper;
 
-public class JSONParser {
+/**
+ * Class contains method for parsing json structures.
+ * @author <a href="mailto:binnarywolf@gmail.com">Dmitriy Bazunov</a>
+ */
+public final class JSONParser
+{
+    /**
+     * Default private constructor designed to forbid creation an instance of
+     * JSONParser class.
+     * @author <a href="mailto:binnarywolf@gmail.com">Dmitriy Bazunov</a>
+     */
+    private JSONParser()
+    {
+    }
 
-	public static String parseJSON(String json, String parsePattern) {
-		System.out.println("Start json");
-		String result = json;
-		try {
-			String[] commands = parsePattern.trim().split("\\.");
-			System.out.println(Arrays.toString(commands));
+    /**
+     * Parse JSON according to given pattern.
+     * @param aJSON
+     *        String contains the JSON structure to parse
+     * @param aParsePattern
+     *        String contains the pattern which is says how to parse JSON
+     * @return Valid JSON Substructure if parameters are correct and error
+     *         message otherwise.
+     */
+    public static String
+            parseJSON(final String aJSON, final String aParsePattern)
+    {
+        System.out.println("Start json");
+        String result = aJSON;
+        try {
+            final String[] commands = aParsePattern.trim().split("\\.");
+            System.out.println(Arrays.toString(commands));
+            System.out.println("before map");
+            final ObjectMapper mapper = new ObjectMapper();
+            System.out.println("after map");
+            final JsonFactory factory = mapper.getJsonFactory();
+            final JsonParser jp = factory.createJsonParser(aJSON);
+            JsonNode actualObj = mapper.readTree(jp);
+            for (String command : commands) {
+                actualObj = executeCommand(actualObj, command);
+            }
+            if (actualObj != null) {
+                if (actualObj.isTextual()) {
+                    result = actualObj.asText();
+                }
+                else {
+                    result = actualObj.toString();
+                }
+            }
+            else {
+                result = "No such node found.";
+            }
+        }
+        catch (JsonParseException e) {
+            result = "JSON parser exception " + e.getLocalizedMessage();
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        catch (Exception e) {
+            System.out.println("Unknown exception: " + e);
+            e.printStackTrace();
+        }
+        return result;
+    }
 
-			System.out.println("before map");
-			ObjectMapper mapper = new ObjectMapper();
+    /**
+     * Execute parser command to move throw JSON parser tree.
+     * @param aCurrentNode
+     *        Current node of parsing tree.
+     * @param aCommand
+     *        String command which says what to do with current node.
+     * @return Child node of the aCurrentNode according to command or null if
+     *         there no such node
+     */
+    private static JsonNode
+            executeCommand(final JsonNode aCurrentNode, final String aCommand)
+    {
+        JsonNode newNode = null;
+        if (aCurrentNode != null) {
+            System.out.println("Node before " + aCurrentNode);
+            if (isGet(aCommand)) {
+                final String argument = aCommand.substring(4,
+                        aCommand.length() - 1);
+                final int index = Integer.parseInt(argument);
+                newNode = aCurrentNode.get(index);
+            }
+            else {
+                newNode = aCurrentNode.get(aCommand);
+            }
+            System.out.println("Node after " + newNode);
+        }
+        return newNode;
+    }
 
-			System.out.println("after map");
-			JsonFactory factory = mapper.getJsonFactory();
-			JsonParser jp;
-			jp = factory.createJsonParser(json);
-
-			JsonNode actualObj = mapper.readTree(jp);
-			for (String command : commands) {
-				actualObj = executeCommand(actualObj, command);
-			}
-			if (actualObj != null) {
-				if (actualObj.isTextual()) {
-					result = actualObj.asText();
-				} else {
-					result = actualObj.toString();
-				}
-			} else {
-				result = "No such node found.";
-			}
-		} catch (JsonParseException e) {
-			result = "JSON parser exception";
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (Exception e) {
-			System.out.println("Unknown exception: " + e);
-			e.printStackTrace();
-		}
-		return result;
-	}
-
-	private static JsonNode executeCommand(JsonNode currentNode, String command) {
-		JsonNode newNode = null;
-		if (currentNode != null) {
-			System.out.println("Node before " + currentNode);
-			if (isGet(command)) {
-				String argument = command.substring(4, command.length() - 1);
-				int index = Integer.parseInt(argument);
-				newNode = currentNode.get(index);
-			} else {
-				newNode = currentNode.get(command);
-			}
-			System.out.println("Node after " + newNode);
-		}
-		return newNode;
-	}
-
-	private static boolean isGet(String command) {
-		Pattern p = Pattern.compile("get\\(\\d+\\)");
-		Matcher m = p.matcher(command);
-		return m.matches();
-	}
+    /**
+     * Check if command is a valid get command or not.
+     * @param aCommand
+     *        String that represent command to JSON parser.
+     * @return Boolean which represen is command a getCommand(true) or
+     *         objectNameCommand(false).
+     */
+    private static boolean isGet(final String aCommand)
+    {
+        final Pattern commandPattern = Pattern.compile("get\\(\\d+\\)");
+        final Matcher regexpMatcher = commandPattern.matcher(aCommand);
+        return regexpMatcher.matches();
+    }
 }
