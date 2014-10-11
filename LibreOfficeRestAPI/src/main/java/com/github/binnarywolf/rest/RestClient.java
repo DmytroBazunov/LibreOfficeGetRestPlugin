@@ -12,8 +12,17 @@ import java.net.URL;
  * Class contains method for executing GET request to the remote server.
  * @author <a href="mailto:binnarywolf@gmail.com">Dmitriy Bazunov</a>
  */
-public class RestClient
+public final class RestClient
 {
+    /**
+     * Default private constructor designed to forbid creation an instance of
+     * RestClient class.
+     * @author <a href="mailto:binnarywolf@gmail.com">Dmitriy Bazunov</a>
+     */
+    private RestClient()
+    {
+    }
+
     /**
      * User agent used to execute GET request.
      */
@@ -25,7 +34,7 @@ public class RestClient
      *        String contains the URL address to which make get request
      * @return Get request result if all OK or error message otherwise.
      */
-    public String get(final String aURL)
+    public static String get(final String aURL)
     {
         String response = null;
         try {
